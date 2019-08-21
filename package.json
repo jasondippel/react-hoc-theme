@@ -1,6 +1,6 @@
 {
   "name": "react-hoc-theme",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple theme hoc for react.",
   "main": "dist/index.js",
   "repository": "https://github.com/jasondippel/react-hoc-theme.git",
@@ -34,7 +34,7 @@
     "start": "parcel watch src/index.js",
     "build": "parcel build src/index.js --global react-hoc-theme",
     "start-demo": "parcel watch example/index.js --out-dir example/dist --no-hmr",
-    "release": "yarn build && np",
+    "release": "yarn build && npm login && np",
     "lint": "eslint src/ --ext .js --ext .jsx",
     "view-source-map": "source-map-explorer dist/index.js dist/index.js.map --html source.html && open source.html"
   }
