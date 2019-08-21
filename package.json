@@ -1,0 +1,41 @@
+{
+  "name": "react-hoc-theme",
+  "version": "0.0.1",
+  "description": "Simple theme hoc for react.",
+  "main": "dist/index.js",
+  "repository": "https://github.com/jasondippel/react-hoc-theme.git",
+  "author": "jasondippel <dippelj12@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "prop-types": "15.7.2",
+    "pubsub-js": "1.7.0",
+    "react": "16.9.0",
+    "react-dom": "16.9.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.5.5",
+    "@babel/core": "7.5.5",
+    "@babel/plugin-proposal-class-properties": "7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "7.5.5",
+    "@babel/plugin-transform-regenerator": "7.4.5",
+    "@babel/plugin-transform-runtime": "7.5.5",
+    "babel-eslint": "10.0.2",
+    "eslint": "5.16.0",
+    "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-jsx-a11y": "6.2.3",
+    "eslint-plugin-react": "7.14.3",
+    "np": "5.0.3",
+    "parcel-bundler": "1.12.3",
+    "prettier": "1.18.2",
+    "source-map-explorer": "2.0.1",
+    "styled-components": "4.3.2"
+  },
+  "scripts": {
+    "start": "parcel watch src/index.js",
+    "build": "parcel build src/index.js --global react-hoc-theme",
+    "start-demo": "parcel watch example/index.js --out-dir example/dist --no-hmr",
+    "release": "yarn build && np",
+    "lint": "eslint src/ --ext .js --ext .jsx",
+    "view-source-map": "source-map-explorer dist/index.js dist/index.js.map --html source.html && open source.html"
+  }
+}

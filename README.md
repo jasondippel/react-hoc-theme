@@ -1,0 +1,3 @@
+# react-hoc-theme
+
+Documentation will come in a bit...
