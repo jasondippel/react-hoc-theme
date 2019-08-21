@@ -1,6 +1,6 @@
 {
   "name": "react-hoc-theme",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple theme hoc for react.",
   "main": "dist/index.js",
   "repository": "https://github.com/jasondippel/react-hoc-theme.git",
