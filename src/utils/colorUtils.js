@@ -64,7 +64,7 @@ export const isDark = hex => {
     // eslint-disable-next-line no-undef
     if (process.env.NODE_ENV !== 'production') {
       // eslint-disable-next-line no-console
-      console.error('isDark called with non-hex value')
+      console.error('isDark called with non-hex value', hex)
     }
     return false
   }

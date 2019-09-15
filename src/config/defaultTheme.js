@@ -18,6 +18,7 @@ export const defaultTheme = {
   background300: '#F1F1F1',
   background400: '#E3E7E8',
   background500: '#D9DDDE',
+  background600: '#2f3638',
   keyline: '#CDD2D4',
 
   /***********************
