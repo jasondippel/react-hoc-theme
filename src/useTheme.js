@@ -3,6 +3,9 @@ import PubSub from 'pubsub-js'
 import { VERSION, THEME_UPDATE_EVENT } from './config'
 import { getTheme } from './utils'
 
+const getDisplayName = WrappedComponent =>
+  WrappedComponent.displayName || WrappedComponent.name || 'Component'
+
 const initialize = () => {
   if (!!window.$themeVersion && window.$themeVersion >= VERSION) return
 
@@ -17,6 +20,8 @@ const initialize = () => {
 
 export const useTheme = Comp =>
   class extends React.Component {
+    static displayName = `UseTheme(${getDisplayName(Comp)})`
+
     constructor(props) {
       super(props)
       initialize()

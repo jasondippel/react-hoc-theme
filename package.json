@@ -39,6 +39,7 @@
     "build": "parcel build src/index.js --global react-hoc-theme",
     "start-demo": "open example/index.html && parcel watch example/index.js --out-dir example/dist --no-hmr",
     "release": "yarn build && npm login && np",
+    "post-release": "./post-release",
     "lint": "eslint src/ --ext .js --ext .jsx",
     "view-source-map": "source-map-explorer dist/index.js dist/index.js.map --html source.html && open source.html"
   }
