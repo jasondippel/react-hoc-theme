@@ -1,6 +1,6 @@
 {
   "name": "react-hoc-theme",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple theme hoc for react.",
   "keywords": [
     "react",
@@ -14,8 +14,8 @@
     "pubsub-js": "1.7.0"
   },
   "peerDependencies": {
-    "react": "^16.3.0",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react": "^16.3.0"
   },
   "devDependencies": {
     "@babel/cli": "7.5.5",
