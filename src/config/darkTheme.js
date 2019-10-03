@@ -1,6 +1,7 @@
-export const VERSION = 'dark.0'
+export const VERSION = 0
+export const TYPE = 'dark'
 
-export const defaultTheme = {
+export const VALUES = {
   /**********
    ** TEXT **
    **********/
