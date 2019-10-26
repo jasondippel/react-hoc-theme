@@ -1,7 +1,5 @@
 # react-hoc-theme
 
-> NOTE: The documentation of this package is still in progress, as is it's development
-
 ## Description
 
 <!-- A description of what this package does. -->
@@ -13,19 +11,19 @@ This package provides you with a higher order component (HOC) that can be used t
 <!-- A basic example of how to use this package. Doesn't have to be proper code, just enough to show how to use it. -->
 
 ```js
-import { useTheme, useContrastingText } from 'react-hoc-theme'
+import { useTheme } from 'react-hoc-theme'
 
 // Later on in your code...
-const ThemedComponent = useTheme(Visual)
-
 const Visual = ({ $theme }) => <div style={{ color: $theme.text }}>Sample</div>
+
+const ThemedComponent = useTheme(Visual)
 
 // The useTheme HOC works really well styled-components
 import styled from 'styled-components'
 
 const ThemedStyledComponent = useTheme(styled.div`
   background-color: ${p => p.$theme.background100};
-  color: ${p => useContrastingText(p.$theme.background100)};
+  color: ${p => p.$theme.text};
 `)
 ```
 
@@ -33,27 +31,32 @@ const ThemedStyledComponent = useTheme(styled.div`
 
 ### `useTheme(Component)`
 
-TODO: add description...
+Injects a `$theme` prop into the provided component that gives it access to the theme values. If any theme values are updated, the component will receive these updates.
+The theme used will be determined by a value stored in local storage. If this value does not exist, it will use the default theme included in this package. The active theme can be changed at any time by calling the `setActiveTheme` function.
 
 ### `useContrastingText(backgroundColor)`
 
-TODO: add description...
+Given the background color text will be rendered on top of, the function will return the primary text color which provides the best contrast ratio between the text and background.
 
 ### `isDark(hexColor)`
 
-TODO: add description...
+Returns a boolean as to whether or not the color is on the dark side.
 
-### `getTheme()`
+### `setActiveTheme(themeObj)`
 
-TODO: add description...
-
-### `updateTheme(key, value)`
-
-TODO: add description...
+Given a valid theme object (see [Theme Structure](#theme-structure)), this will attempt to set it as the active theme. If the current theme is the same type as the desired active theme, it will only update the theme if the new theme object is more recent (ie has a higher version). If the themes are different types, it will update the active theme regardless of version numbers.
 
 ## Theme Structure
 
-TODO: add description...
+[Example themes](https://github.com/jasondippel/react-hoc-theme/tree/master/src/config)
+
+```js
+{
+  type: string,
+  version: number,
+  values: object,
+}
+```
 
 ## Known Issues
 
