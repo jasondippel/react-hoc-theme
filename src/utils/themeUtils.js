@@ -103,7 +103,6 @@ const validateTheme = theme => {
  * subscribers
  **/
 export const setActiveTheme = themeObj => {
-  console.log('setting active theme', themeObj)
   const isValidTheme = validateTheme(themeObj)
 
   if (!isValidTheme) {
