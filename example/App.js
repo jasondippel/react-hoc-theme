@@ -1,10 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useTheme, setActiveTheme, LIGHT_THEME, DARK_THEME } from '../src'
-
-window.setActiveTheme = setActiveTheme
-window.LIGHT_THEME = LIGHT_THEME
-window.DARK_THEME = DARK_THEME
+import { useTheme } from '../src'
 
 import { Section } from './Section'
 import { SubSection } from './SubSection'
