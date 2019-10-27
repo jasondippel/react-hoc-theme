@@ -1,13 +1,14 @@
-export const VERSION = '0'
+export const VERSION = 0
+export const TYPE = 'light'
 
-export const defaultTheme = {
+export const VALUES = {
   /**********
    ** TEXT **
    **********/
   text: '#2f3638',
   textInverse: '#F5FAFC',
   textMeta: '#5D6366',
-  textDisabled: '#959A9C',
+  textDisabled: '#70767a',
   link: '#0078A4',
 
   /****************

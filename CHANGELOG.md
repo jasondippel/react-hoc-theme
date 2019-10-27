@@ -7,7 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.0.1] - 2019-09-17 
+### Added
+
+- New dark theme
+- Release documentation
+
+### Changed
+
+- Filled in missing parts of README
+
+## [1.0.1] - 2019-09-17
 
 ### Added
 

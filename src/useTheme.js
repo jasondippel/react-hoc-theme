@@ -1,21 +1,31 @@
 import React from 'react'
 import PubSub from 'pubsub-js'
-import { VERSION, THEME_UPDATE_EVENT } from './config'
-import { getTheme } from './utils'
+import { THEME_UPDATE_EVENT } from './config'
+import {
+  getActiveTheme,
+  getDefaultTheme,
+  getKnownThemeByType,
+  setActiveTheme,
+} from './utils'
 
 const getDisplayName = WrappedComponent =>
   WrappedComponent.displayName || WrappedComponent.name || 'Component'
 
 const initialize = () => {
-  if (!!window.$themeVersion && window.$themeVersion >= VERSION) return
+  const activeTheme = getActiveTheme()
 
-  const sendUpdate = !!window.$themeVersion
-  const theme = getTheme()
+  if (!!activeTheme) {
+    const knownMatchingTheme = getKnownThemeByType(activeTheme.type)
 
-  window.$themeVersion = VERSION
-  window.$theme = theme
+    if (!knownMatchingTheme || typeof activeTheme.version !== 'number') return
+    if (knownMatchingTheme.version <= activeTheme.version) {
+      return
+    }
 
-  if (sendUpdate) PubSub.publish(THEME_UPDATE_EVENT)
+    return setActiveTheme(knownMatchingTheme)
+  }
+
+  setActiveTheme(getDefaultTheme())
 }
 
 export const useTheme = Comp =>
@@ -43,6 +53,7 @@ export const useTheme = Comp =>
     handleThemeUpdate = () => this.forceUpdate()
 
     render() {
-      return <Comp {...this.props} $theme={getTheme()} />
+      const themeObj = getActiveTheme() || {}
+      return <Comp {...this.props} $theme={themeObj.values} />
     }
   }

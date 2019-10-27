@@ -1,4 +1,4 @@
 export { useTheme } from './useTheme'
-export { updateTheme } from './updateTheme'
 export { useContrastingText } from './useContrastingText'
-export { isDark, getTheme } from './utils'
+export { isDark, setActiveTheme } from './utils'
+export { LIGHT_THEME, DARK_THEME, DEFAULT_THEME } from './config'

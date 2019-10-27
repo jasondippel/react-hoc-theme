@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useTheme, useContrastingText } from '../src'
+import { useTheme } from '../src'
 
 import { Section } from './Section'
 import { SubSection } from './SubSection'
@@ -27,9 +27,10 @@ const COLOR_SECTIONS = {
 const Root = useTheme(styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  min-height: 100vh;
+  padding: 12px;
   background-color: ${p => p.$theme.background100};
-  color: ${p => useContrastingText(p.$theme.background100)};
+  color: ${p => p.$theme.text};
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
 `)

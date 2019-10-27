@@ -13,6 +13,7 @@ const Title = useTheme(styled.button`
   border: none;
   padding: 0;
   margin: 4px 0;
+  color: ${p => p.$theme.text};
 
   &:hover {
     color: ${p => p.$theme.link};
@@ -32,7 +33,7 @@ const Text = useTheme(styled.h2`
 const IndicatorIcon = useTheme(styled.span`
   display: flex;
   margin: auto 8px;
-  border: solid black;
+  border: solid ${p => p.$theme.text};
   border-width: 0 ${ARROW_SIZE} ${ARROW_SIZE} 0;
   display: inline-block;
   padding: ${ARROW_SIZE};
