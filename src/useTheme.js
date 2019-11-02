@@ -28,6 +28,17 @@ const initialize = () => {
   setActiveTheme(getDefaultTheme())
 }
 
+const setupWindow = () => {
+  const currentUtils = window.$theme_utils || {}
+
+  window.$themeUtils = {
+    ...{
+      setActiveTheme,
+    },
+    ...currentUtils,
+  }
+}
+
 export const useTheme = Comp =>
   class extends React.Component {
     static displayName = `UseTheme(${getDisplayName(Comp)})`
@@ -39,6 +50,7 @@ export const useTheme = Comp =>
 
     componentDidMount() {
       this.mount = true
+      setupWindow()
       this.unsubscribeToken = PubSub.subscribe(
         THEME_UPDATE_EVENT,
         this.handleThemeUpdate,
