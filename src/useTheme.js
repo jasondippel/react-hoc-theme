@@ -31,11 +31,9 @@ const initialize = () => {
 const setupWindow = () =>
   // set this so that it's possible to communicate across iframes and other
   // boundaries
-  (window.$theme_utils = {
+  (window.$theme_utils = window.$theme_utils || {
     setActiveTheme,
   })
-
-const cleanupWindow = () => delete window.$theme_utils
 
 export const useTheme = Comp =>
   class extends React.Component {
@@ -58,7 +56,6 @@ export const useTheme = Comp =>
     componentWillUnmount() {
       this.mount = false
       PubSub.unsubscribe(this.unsubscribeToken)
-      cleanupWindow()
     }
 
     handleThemeUpdate = () => this.forceUpdate()
