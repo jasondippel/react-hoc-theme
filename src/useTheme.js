@@ -28,12 +28,16 @@ const initialize = () => {
   setActiveTheme(getDefaultTheme())
 }
 
-const setupWindow = () =>
-  // set this so that it's possible to communicate across iframes and other
-  // boundaries
-  (window.$theme_utils = window.$theme_utils || {
-    setActiveTheme,
-  })
+const setupWindow = () => {
+  const currentUtils = window.$theme_utils || {}
+
+  window.$themeUtils = {
+    ...{
+      setActiveTheme,
+    },
+    ...currentUtils,
+  }
+}
 
 export const useTheme = Comp =>
   class extends React.Component {
