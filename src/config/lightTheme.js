@@ -1,15 +1,15 @@
-export const VERSION = 0
+export const VERSION = 1
 export const TYPE = 'light'
 
 export const VALUES = {
   /**********
    ** TEXT **
    **********/
-  text: '#2f3638',
+  text: '#181A1B',
   textInverse: '#F5FAFC',
-  textMeta: '#5D6366',
-  textDisabled: '#70767a',
-  link: '#0078A4',
+  textMeta: '#4e5356',
+  textDisabled: '#61696b',
+  link: '#007099',
 
   /****************
    ** BACKGROUND **
@@ -19,7 +19,9 @@ export const VALUES = {
   background300: '#F1F1F1',
   background400: '#E3E7E8',
   background500: '#D9DDDE',
-  background600: '#2f3638',
+  background600: '#2f3638', // NOTE: this is deprecated; will be removed in near future
+  backgroundLight: '#FFFFFF',
+  backgroundDark: '#181A1B',
   keyline: '#CDD2D4',
 
   /***********************
@@ -39,14 +41,14 @@ export const VALUES = {
   /***********************
    ** ACCENTS - WARNING **
    ***********************/
-  warning: '#F4B21E',
+  warning: '#f4b71e',
   warningAccent: '#FFE380',
   warningBackground: '#FFF1C0',
 
   /*********************
    ** ACCENTS - ERROR **
    *********************/
-  error: '#E60000',
+  error: '#FF1A1A',
   errorAccent: '#F9BFBF',
   errorBackground: '#FBE5E5',
 }

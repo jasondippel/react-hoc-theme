@@ -15,7 +15,6 @@ import { useTheme } from 'react-hoc-theme'
 
 // Later on in your code...
 const Visual = ({ $theme }) => <div style={{ color: $theme.text }}>Sample</div>
-
 const ThemedComponent = useTheme(Visual)
 
 // The useTheme HOC works really well styled-components
@@ -62,7 +61,10 @@ Given a valid theme object (see [Theme Structure](#theme-structure)), this will 
 
 <!-- Are there any current issues with this component? -->
 
-There are no known issues at this time.
+- Poor system for communicating across iframes
+- Poor system for properly marking fields within themes as deprecated
+- No tests
+- NPM package contains more than what's necessary
 
 ## Running the Example
 
