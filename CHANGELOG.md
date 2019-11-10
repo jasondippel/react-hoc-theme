@@ -12,10 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated both dark and light themes to improve color contrast ratios
 - Updated example to more accurately calculate contrast ratios
 - Marked background600 as deprecated; Will be removed once mechanism to better deprecate fields is in place
+- Changed structure of theme object on window to enable better communication between theme packages (specifically between iframes)
 
 ## Added
 
 - backgroundLight and backgroundDark values to both light and dark themes
+- Exposed getActiveTheme function
 
 ## [1.1.1] - 2019-11-01
 

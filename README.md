@@ -45,6 +45,14 @@ Returns a boolean as to whether or not the color is on the dark side.
 
 Given a valid theme object (see [Theme Structure](#theme-structure)), this will attempt to set it as the active theme. If the current theme is the same type as the desired active theme, it will only update the theme if the new theme object is more recent (ie has a higher version). If the themes are different types, it will update the active theme regardless of version numbers.
 
+### `getActiveTheme()`
+
+Returns the active theme object.
+
+### `LIGHT_THEME`, `DARK_THEME`, `DEFAULT_THEME`
+
+Predefined themes available for use.
+
 ## Theme Structure
 
 [Example themes](https://github.com/jasondippel/react-hoc-theme/tree/master/src/config)
@@ -61,7 +69,6 @@ Given a valid theme object (see [Theme Structure](#theme-structure)), this will 
 
 <!-- Are there any current issues with this component? -->
 
-- Poor system for communicating across iframes
 - Poor system for properly marking fields within themes as deprecated
 - No tests
 - NPM package contains more than what's necessary
