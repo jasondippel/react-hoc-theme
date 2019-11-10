@@ -1,4 +1,4 @@
-import PubSub from 'pubsub-js'
+import { getRootWindow, getPubSub } from './index'
 import {
   THEME_UPDATE_EVENT,
   // default theme
@@ -34,54 +34,6 @@ const KNOWN_THEMES = {
 }
 
 /**
- * Returns the object associated with the currently used theme or undefined if
- * there is no active theme
- **/
-export const getActiveTheme = () => window.$theme
-
-/**
- * Given a key, returns the value associated with that key in the active theme;
- * Returns unknown if there's no active theme or the key is not defined in the
- * active theme
- **/
-export const getThemeVal = ({ key }) => {
-  const currentTheme = getActiveTheme()
-  if (!currentTheme) {
-    // eslint-disable-next-line no-undef
-    if (process.env.NODE_ENV !== 'production') {
-      // eslint-disable-next-line no-console
-      console.error(
-        'Tried to get theme value when no theme has been initialized',
-      )
-    }
-    return
-  }
-
-  return currentTheme.values[key]
-}
-
-/**
- * Returns the theme object for the default theme
- **/
-export const getDefaultTheme = () => KNOWN_THEMES[DEFAULT_THEME_TYPE]
-
-/**
- * Returns the theme object for the given type; For unknown types, it returns
- * undefined
- **/
-export const getKnownThemeByType = type => {
-  // eslint-disable-next-line no-undef
-  if (process.env.NODE_ENV !== 'production') {
-    if (!KNOWN_THEMES[type]) {
-      // eslint-disable-next-line no-console
-      console.error('Tried to get theme for unknown type')
-    }
-  }
-
-  return KNOWN_THEMES[type]
-}
-
-/**
  * Given a theme object, returns a boolean as to whether or not it matches the
  * expected format
  **/
@@ -99,10 +51,61 @@ const validateTheme = theme => {
 }
 
 /**
+ * Returns the object associated with the currently used theme or undefined if
+ * there is no active theme
+ **/
+const getActiveTheme = () => {
+  const RootWindow = getRootWindow()
+  return RootWindow.$theme.activeTheme
+}
+
+/**
+ * Returns the theme object for the default theme
+ **/
+const getDefaultTheme = () => KNOWN_THEMES[DEFAULT_THEME_TYPE]
+
+/**
+ * Returns the theme object for the given type; For unknown types, it returns
+ * undefined
+ **/
+const getKnownThemeByType = type => {
+  // eslint-disable-next-line no-undef
+  if (process.env.NODE_ENV !== 'production') {
+    if (!KNOWN_THEMES[type]) {
+      // eslint-disable-next-line no-console
+      console.error('Tried to get theme for unknown type')
+    }
+  }
+
+  return KNOWN_THEMES[type]
+}
+
+/**
+ * Given a key, returns the value associated with that key in the active theme;
+ * Returns unknown if there's no active theme or the key is not defined in the
+ * active theme
+ **/
+const getThemeVal = ({ key }) => {
+  const currentTheme = getActiveTheme()
+  if (!currentTheme) {
+    // eslint-disable-next-line no-undef
+    if (process.env.NODE_ENV !== 'production') {
+      // eslint-disable-next-line no-console
+      console.error(
+        'Tried to get theme value when no theme has been initialized',
+      )
+    }
+    return
+  }
+
+  return currentTheme.values[key]
+}
+
+/**
  * Given a valid theme object, it sets that as the active theme and notifies all
  * subscribers
  **/
-export const setActiveTheme = themeObj => {
+const setActiveTheme = themeObj => {
   const isValidTheme = validateTheme(themeObj)
 
   if (!isValidTheme) {
@@ -114,6 +117,37 @@ export const setActiveTheme = themeObj => {
     return
   }
 
-  window.$theme = themeObj
+  const PubSub = getPubSub()
+  const RootWindow = getRootWindow()
+  RootWindow.$theme.activeTheme = themeObj
+
   PubSub.publish(THEME_UPDATE_EVENT)
+}
+
+/**
+ * If the active theme is defined, but this package has a more recent version,
+ * this will set the active theme to the more recent version.
+ * If there is no active theme defined, it will be set to the default theme of
+ * this package.
+ **/
+const initTheme = () => {
+  const activeTheme = getActiveTheme()
+  if (!activeTheme) return setActiveTheme(getDefaultTheme())
+
+  const knownMatchingTheme = getKnownThemeByType(activeTheme.type)
+  if (!knownMatchingTheme || typeof activeTheme.version !== 'number') return
+  if (knownMatchingTheme.version <= activeTheme.version) {
+    return
+  }
+
+  return setActiveTheme(knownMatchingTheme)
+}
+
+export {
+  initTheme,
+  setActiveTheme,
+  getActiveTheme,
+  getDefaultTheme,
+  getKnownThemeByType,
+  getThemeVal,
 }

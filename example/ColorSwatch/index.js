@@ -38,6 +38,7 @@ const Title = useTheme(styled.h2`
 const Metadata = useTheme(styled.p`
   color: ${p => p.$theme.textMeta};
   margin: 0px;
+  text-transform: uppercase;
 `)
 
 export const ColorSwatch = ({ color, text }) => (
