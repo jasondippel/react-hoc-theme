@@ -15,7 +15,8 @@ const COLOR_SECTIONS = {
     'background300',
     'background400',
     'background500',
-    'background600',
+    'backgroundLight',
+    'backgroundDark',
     'keyline',
   ],
   Primary: ['primary', 'primaryAccent', 'primaryBackground'],
@@ -83,8 +84,7 @@ export const App = useTheme(({ $theme }) => {
         </Link>
       </Title>
       <Content>
-        <Section title={'Details'}>TODO: README contents go here...</Section>
-        <Section title={'Color Swatches'}>
+        <Section title={'Color Swatches'} startOpen>
           {Object.keys(COLOR_SECTIONS).map(s => (
             <React.Fragment key={`${s}_fragment`}>
               <SectionTitle key={s}>{s}</SectionTitle>

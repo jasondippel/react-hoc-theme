@@ -1,42 +1,21 @@
 import React from 'react'
-import PubSub from 'pubsub-js'
+import PubSubPackage from 'pubsub-js'
 import { THEME_UPDATE_EVENT } from './config'
 import {
+  initRootWindow,
+  initPubSub,
+  initTheme,
   getActiveTheme,
-  getDefaultTheme,
-  getKnownThemeByType,
-  setActiveTheme,
+  getPubSub,
 } from './utils'
 
 const getDisplayName = WrappedComponent =>
   WrappedComponent.displayName || WrappedComponent.name || 'Component'
 
 const initialize = () => {
-  const activeTheme = getActiveTheme()
-
-  if (!!activeTheme) {
-    const knownMatchingTheme = getKnownThemeByType(activeTheme.type)
-
-    if (!knownMatchingTheme || typeof activeTheme.version !== 'number') return
-    if (knownMatchingTheme.version <= activeTheme.version) {
-      return
-    }
-
-    return setActiveTheme(knownMatchingTheme)
-  }
-
-  setActiveTheme(getDefaultTheme())
-}
-
-const setupWindow = () => {
-  const currentUtils = window.$theme_utils || {}
-
-  window.$themeUtils = {
-    ...{
-      setActiveTheme,
-    },
-    ...currentUtils,
-  }
+  initRootWindow()
+  initPubSub(PubSubPackage)
+  initTheme()
 }
 
 export const useTheme = Comp =>
@@ -50,7 +29,7 @@ export const useTheme = Comp =>
 
     componentDidMount() {
       this.mount = true
-      setupWindow()
+      const PubSub = getPubSub()
       this.unsubscribeToken = PubSub.subscribe(
         THEME_UPDATE_EVENT,
         this.handleThemeUpdate,
@@ -59,6 +38,7 @@ export const useTheme = Comp =>
 
     componentWillUnmount() {
       this.mount = false
+      const PubSub = getPubSub()
       PubSub.unsubscribe(this.unsubscribeToken)
     }
 

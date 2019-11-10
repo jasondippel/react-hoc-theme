@@ -1,8 +1,11 @@
 export { isDark } from './colorUtils'
+export { initPubSub, getPubSub } from './pubsubUtils'
 export {
+  initTheme,
+  setActiveTheme,
   getActiveTheme,
-  getThemeVal,
   getDefaultTheme,
   getKnownThemeByType,
-  setActiveTheme,
+  getThemeVal,
 } from './themeUtils'
+export { initRootWindow, getRootWindow } from './windowUtils'
