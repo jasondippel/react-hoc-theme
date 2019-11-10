@@ -1,7 +1,7 @@
 import { getRootWindow } from './index'
 
 /**
- *
+ * Ensures the PubSub object is defined
  **/
 export const initPubSub = PubSub => {
   const RootWindow = getRootWindow()
