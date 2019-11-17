@@ -9,3 +9,4 @@ export {
   getThemeVal,
 } from './themeUtils'
 export { initRootWindow, getRootWindow } from './windowUtils'
+export { getIn } from './object'

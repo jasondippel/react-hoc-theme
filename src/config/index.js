@@ -8,6 +8,7 @@ import {
   VERSION as DARK_THEME_VERSION,
   TYPE as DARK_THEME_TYPE,
 } from './darkTheme'
+import { DEPRECATED_FIELDS } from './deprecated'
 
 const THEME_UPDATE_EVENT = 'THEME_UPDATE_EVENT'
 
@@ -29,6 +30,7 @@ const DEFAULT_THEME_VERSION = LIGHT_THEME_VERSION
 const DEFAULT_THEME_TYPE = 'default'
 
 export {
+  DEPRECATED_FIELDS,
   THEME_UPDATE_EVENT,
   // default theme
   DEFAULT_THEME,

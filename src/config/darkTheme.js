@@ -19,7 +19,6 @@ export const VALUES = {
   background300: '#222729',
   background400: '#384042',
   background500: '#3f4547',
-  background600: '#FFFFFF', // NOTE: this is deprecated; will be removed in near future
   backgroundLight: '#FFFFFF',
   backgroundDark: '#1c2021',
   keyline: '#191d1f',

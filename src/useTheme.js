@@ -5,7 +5,7 @@ import {
   initRootWindow,
   initPubSub,
   initTheme,
-  getActiveTheme,
+  getThemeVal,
   getPubSub,
 } from './utils'
 
@@ -45,7 +45,6 @@ export const useTheme = Comp =>
     handleThemeUpdate = () => this.forceUpdate()
 
     render() {
-      const themeObj = getActiveTheme() || {}
-      return <Comp {...this.props} $theme={themeObj.values} />
+      return <Comp {...this.props} $theme={getThemeVal} />
     }
   }
