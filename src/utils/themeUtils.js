@@ -1,5 +1,6 @@
-import { getRootWindow, getPubSub } from './index'
+import { getRootWindow, getPubSub, getIn } from './index'
 import {
+  DEPRECATED_FIELDS,
   THEME_UPDATE_EVENT,
   // default theme
   DEFAULT_THEME_VALUES,
@@ -81,12 +82,13 @@ const getKnownThemeByType = type => {
 }
 
 /**
- * Given a key, returns the value associated with that key in the active theme;
- * Returns unknown if there's no active theme or the key is not defined in the
+ * Given a path to a value, returns the value in the active theme; Returns
+ * undefined if there's no active theme or the key is not defined in the
  * active theme
  **/
-const getThemeVal = ({ key }) => {
+const getThemeVal = keyPath => {
   const currentTheme = getActiveTheme()
+  if (Array.isArray(keyPath)) keyPath = keyPath[0]
   if (!currentTheme) {
     // eslint-disable-next-line no-undef
     if (process.env.NODE_ENV !== 'production') {
@@ -97,8 +99,20 @@ const getThemeVal = ({ key }) => {
     }
     return
   }
+  // eslint-disable-next-line no-undef
+  if (process.env.NODE_ENV !== 'production') {
+    if (!!DEPRECATED_FIELDS[keyPath]) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `%c!! Deprecated Theme Value Used !!\n` +
+          `%cValue: "${keyPath}"\nUpgrade Instructions: ${DEPRECATED_FIELDS[keyPath].upgradeInstructions}`,
+        'font-weight: bold; color: orange;',
+        'font-weight: normal; color: inherit;',
+      )
+    }
+  }
 
-  return currentTheme.values[key]
+  return getIn(currentTheme.values, keyPath)
 }
 
 /**

@@ -1,8 +1,8 @@
 import { getThemeVal, isDark } from './utils'
 
 export const useContrastingText = background => {
-  const text = getThemeVal({ key: 'text' })
-  const textInverse = getThemeVal({ key: 'textInverse' })
+  const text = getThemeVal('text')
+  const textInverse = getThemeVal('textInverse')
 
   let darkText, lightText
   if (isDark(text)) {

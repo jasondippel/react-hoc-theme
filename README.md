@@ -14,15 +14,15 @@ This package provides you with a higher order component (HOC) that can be used t
 import { useTheme } from 'react-hoc-theme'
 
 // Later on in your code...
-const Visual = ({ $theme }) => <div style={{ color: $theme.text }}>Sample</div>
+const Visual = ({ $theme }) => <div style={{ color: $theme`text` }}>Sample</div>
 const ThemedComponent = useTheme(Visual)
 
 // The useTheme HOC works really well styled-components
 import styled from 'styled-components'
 
 const ThemedStyledComponent = useTheme(styled.div`
-  background-color: ${p => p.$theme.background100};
-  color: ${p => p.$theme.text};
+  background-color: ${p => p.$theme`background100`};
+  color: ${p => p.$theme(`text`, fallback)};
 `)
 ```
 
@@ -30,7 +30,7 @@ const ThemedStyledComponent = useTheme(styled.div`
 
 ### `useTheme(Component)`
 
-Injects a `$theme` prop into the provided component that gives it access to the theme values. If any theme values are updated, the component will receive these updates.
+Injects a `$theme` prop into the provided component that gives it access to the theme values. `$theme` is a function that can be called as a standard function (ex `$theme('text')`) or as a [tagged template](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates). If any theme values are updated, the component will receive these updates.
 The theme used will be determined by a value stored in local storage. If this value does not exist, it will use the default theme included in this package. The active theme can be changed at any time by calling the `setActiveTheme` function.
 
 ### `useContrastingText(backgroundColor)`
@@ -69,7 +69,7 @@ Predefined themes available for use.
 
 <!-- Are there any current issues with this component? -->
 
-- Poor system for properly marking fields within themes as deprecated
+- Does not remember theme selection if page refreshed
 - No tests
 - NPM package contains more than what's necessary
 
