@@ -15,3 +15,14 @@ export const getIn = (collection, keyPath, notSetValue) => {
 
   return collection
 }
+
+export const weaveArrays = (arr1, arr2) => {
+  if (!arr2 || !arr2.length) return arr1[0]
+  let result = arr1[0]
+
+  for (var i = 1; i < arr1.length; i++) {
+    result = result + arr2[i - 1] + arr1[i]
+  }
+
+  return result
+}

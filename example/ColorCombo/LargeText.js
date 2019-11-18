@@ -4,7 +4,7 @@ import { useTheme } from '../../src'
 
 const Root = useTheme(styled.div`
   display: flex;
-  color: ${p => p.$theme(p.color)};
+  color: ${p => p.$theme`colors/${p.color}`};
   font-weight: 700;
 `)
 

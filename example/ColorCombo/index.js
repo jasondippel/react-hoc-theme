@@ -13,8 +13,8 @@ const Root = useTheme(styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: ${p => p.$theme(p.background)};
-  border: 1px solid ${p => p.$theme`keyline`};
+  background-color: ${p => p.$theme`colors/${p.background}`};
+  border: 1px solid ${p => p.$theme`colors/keyline`};
   height: ${BOX_HEIGHT};
   width: ${BOX_WIDTH};
   margin: 12px 8px;
