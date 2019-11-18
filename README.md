@@ -44,6 +44,7 @@ Returns a boolean as to whether or not the color is on the dark side.
 ### `setActiveTheme(themeObj)`
 
 Given a valid theme object (see [Theme Structure](#theme-structure)), this will attempt to set it as the active theme. If the current theme is the same type as the desired active theme, it will only update the theme if the new theme object is more recent (ie has a higher version). If the themes are different types, it will update the active theme regardless of version numbers.
+The active theme type is stored in local storage. This enables the same theme to be used the next time the page loads.
 
 ### `getActiveTheme()`
 
@@ -69,7 +70,6 @@ Predefined themes available for use.
 
 <!-- Are there any current issues with this component? -->
 
-- Does not remember theme selection if page refreshed
 - No tests
 - NPM package contains more than what's necessary
 
