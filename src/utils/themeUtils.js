@@ -1,37 +1,24 @@
-import { getRootWindow, getPubSub, getIn } from './index'
+import {
+  getRootWindow,
+  getPubSub,
+  getIn,
+  setLocalStorageValue,
+  getLocalStorageValue,
+} from './index'
 import {
   DEPRECATED_FIELDS,
   THEME_UPDATE_EVENT,
-  // default theme
-  DEFAULT_THEME_VALUES,
-  DEFAULT_THEME_TYPE,
-  DEFAULT_THEME_VERSION,
-  // light theme
-  LIGHT_THEME_VALUES,
-  LIGHT_THEME_TYPE,
-  LIGHT_THEME_VERSION,
-  // dark theme
-  DARK_THEME_VALUES,
-  DARK_THEME_TYPE,
-  DARK_THEME_VERSION,
+  DEFAULT_THEME,
+  LIGHT_THEME,
+  DARK_THEME,
 } from '../config'
 
+const THEME_TYPE_KEY = 'themeType'
+
 const KNOWN_THEMES = {
-  [DEFAULT_THEME_TYPE]: {
-    type: DEFAULT_THEME_TYPE,
-    version: DEFAULT_THEME_VERSION,
-    values: DEFAULT_THEME_VALUES,
-  },
-  [LIGHT_THEME_TYPE]: {
-    type: LIGHT_THEME_TYPE,
-    version: LIGHT_THEME_VERSION,
-    values: LIGHT_THEME_VALUES,
-  },
-  [DARK_THEME_TYPE]: {
-    type: DARK_THEME_TYPE,
-    version: DARK_THEME_VERSION,
-    values: DARK_THEME_VALUES,
-  },
+  [DEFAULT_THEME.type]: DEFAULT_THEME,
+  [LIGHT_THEME.type]: LIGHT_THEME,
+  [DARK_THEME.type]: DARK_THEME,
 }
 
 /**
@@ -63,7 +50,7 @@ const getActiveTheme = () => {
 /**
  * Returns the theme object for the default theme
  **/
-const getDefaultTheme = () => KNOWN_THEMES[DEFAULT_THEME_TYPE]
+const getDefaultTheme = () => KNOWN_THEMES[DEFAULT_THEME.type]
 
 /**
  * Returns the theme object for the given type; For unknown types, it returns
@@ -120,6 +107,7 @@ const getThemeVal = keyPath => {
  * subscribers
  **/
 const setActiveTheme = themeObj => {
+  const activeTheme = getActiveTheme() || {}
   const isValidTheme = validateTheme(themeObj)
 
   if (!isValidTheme) {
@@ -130,10 +118,16 @@ const setActiveTheme = themeObj => {
     }
     return
   }
+  if (
+    themeObj.type === activeTheme.type &&
+    themeObj.version === activeTheme.version
+  )
+    return
 
   const PubSub = getPubSub()
   const RootWindow = getRootWindow()
   RootWindow.$theme.activeTheme = themeObj
+  setLocalStorageValue(THEME_TYPE_KEY, themeObj.type)
 
   PubSub.publish(THEME_UPDATE_EVENT)
 }
@@ -146,7 +140,11 @@ const setActiveTheme = themeObj => {
  **/
 const initTheme = () => {
   const activeTheme = getActiveTheme()
-  if (!activeTheme) return setActiveTheme(getDefaultTheme())
+  if (!activeTheme) {
+    const lsThemeType = getLocalStorageValue(THEME_TYPE_KEY)
+    const theme = getKnownThemeByType(lsThemeType) || getDefaultTheme()
+    return setActiveTheme(theme)
+  }
 
   const knownMatchingTheme = getKnownThemeByType(activeTheme.type)
   if (!knownMatchingTheme || typeof activeTheme.version !== 'number') return
