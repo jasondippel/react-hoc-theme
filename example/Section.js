@@ -13,13 +13,13 @@ const Title = useTheme(styled.button`
   border: none;
   padding: 0;
   margin: 0;
-  color: ${p => p.$theme`text`};
+  color: ${p => p.$theme`colors/text`};
 
   &:hover {
-    color: ${p => p.$theme`link`};
+    color: ${p => p.$theme`colors/link`};
 
     > span {
-      border-color: ${p => p.$theme`link`};
+      border-color: ${p => p.$theme`colors/link`};
     }
   }
 `)
@@ -31,7 +31,7 @@ const Text = styled.h1`
 const IndicatorIcon = useTheme(styled.span`
   display: flex;
   margin: auto 8px;
-  border: solid ${p => p.$theme`text`};
+  border: solid ${p => p.$theme`colors/text`};
   border-width: 0 ${ARROW_SIZE} ${ARROW_SIZE} 0;
   display: inline-block;
   padding: ${ARROW_SIZE};
@@ -43,8 +43,8 @@ const IndicatorIcon = useTheme(styled.span`
 const Content = useTheme(styled.div`
   padding: 0px 12px;
   background-image: linear-gradient(
-    ${p => p.$theme`background200`},
-    ${p => p.$theme`background100`}
+    ${p => p.$theme`colors/background200`},
+    ${p => p.$theme`colors/background100`}
   );
   max-height: ${p => (p.isOpen ? 'auto' : '0px')};
   min-height: ${p => (p.isOpen ? '100px' : '0px')};

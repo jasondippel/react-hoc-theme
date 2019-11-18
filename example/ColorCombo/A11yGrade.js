@@ -18,14 +18,17 @@ const Root = styled.div`
 `
 
 export const A11yGrade = useTheme(({ $theme, background, color, type }) => {
-  const contrastVal = contrast($theme(background), $theme(color))
+  const contrastVal = contrast(
+    $theme(`colors/${background}`),
+    $theme(`colors/${color}`),
+  )
   const pass = contrastVal >= a11yMinimums[type]
   return (
     <Root>
       {pass ? (
-        <CheckCircleFilled fill={$theme`success`} />
+        <CheckCircleFilled fill={$theme`colors/success`} />
       ) : (
-        <CrossCircleFilled fill={$theme`error`} />
+        <CrossCircleFilled fill={$theme`colors/error`} />
       )}
     </Root>
   )

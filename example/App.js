@@ -36,16 +36,16 @@ const Root = useTheme(styled.div`
   flex-direction: column;
   min-height: 100vh;
   padding: 12px;
-  background-color: ${p => p.$theme`background100`};
-  color: ${p => p.$theme`text`};
+  background-color: ${p => p.$theme`colors/background100`};
+  color: ${p => p.$theme`colors/text`};
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
 `)
 
-const Title = useTheme(styled.h1``)
+const Title = styled.h1``
 
 const Link = useTheme(styled.a`
-  color: ${p => p.$theme`link`};
+  color: ${p => p.$theme`colors/link`};
   cursor: pointer;
   text-decoration: none;
 
@@ -60,7 +60,7 @@ const Content = useTheme(styled.div`
 `)
 
 const SectionTitle = useTheme(styled.h2`
-  border-bottom: 1px solid ${p => p.$theme`keyline`};
+  border-bottom: 1px solid ${p => p.$theme`colors/keyline`};
 `)
 
 const Group = styled.div`
@@ -70,8 +70,8 @@ const Group = styled.div`
 
 const Button = useTheme(styled.button`
   padding: 12px;
-  background: ${p => p.$theme`primary`};
-  color: ${p => p.$theme`text`};
+  background: ${p => p.$theme`colors/primary`};
+  color: ${p => p.$theme`colors/text`};
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   border: none;
@@ -80,18 +80,20 @@ const Button = useTheme(styled.button`
 
   &:hover {
     cursor: pointer;
-    background: ${p => p.$theme`primaryAccent`};
+    background: ${p => p.$theme`colors/primaryAccent`};
   }
 `)
 
 export const App = useTheme(({ $theme }) => {
   const textMaping = {
-    [$theme`text`]: 'text',
-    [$theme`textInverse`]: 'textInverse',
+    [$theme`colors/text`]: 'text',
+    [$theme`colors/textInverse`]: 'textInverse',
   }
 
-  const darkTextName = textMaping[useContrastingText($theme`backgroundLight`)]
-  const lightTextName = textMaping[useContrastingText($theme`backgroundDark`)]
+  const darkTextName =
+    textMaping[useContrastingText($theme`colors/backgroundLight`)]
+  const lightTextName =
+    textMaping[useContrastingText($theme`colors/backgroundDark`)]
 
   return (
     <Root>
@@ -113,8 +115,14 @@ export const App = useTheme(({ $theme }) => {
             <React.Fragment key={`${s}_fragment`}>
               <SectionTitle key={s}>{s}</SectionTitle>
               {COLOR_SECTIONS[s].map(k => {
-                const key = `${k}_${$theme(k)}`
-                return <ColorSwatch color={$theme(k)} text={k} key={key} />
+                const key = `${k}_${$theme(`colors/${k}`)}`
+                return (
+                  <ColorSwatch
+                    color={$theme(`colors/${k}`)}
+                    text={k}
+                    key={key}
+                  />
+                )
               })}
             </React.Fragment>
           ))}
