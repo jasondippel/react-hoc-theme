@@ -4,6 +4,7 @@ import {
   getIn,
   setLocalStorageValue,
   getLocalStorageValue,
+  weaveArrays,
 } from './index'
 import {
   DEPRECATED_FIELDS,
@@ -73,9 +74,10 @@ const getKnownThemeByType = type => {
  * undefined if there's no active theme or the key is not defined in the
  * active theme
  **/
-const getThemeVal = keyPath => {
+const getThemeVal = (keyPath, ...vars) => {
   const currentTheme = getActiveTheme()
-  if (Array.isArray(keyPath)) keyPath = keyPath[0]
+
+  if (Array.isArray(keyPath)) keyPath = weaveArrays(keyPath, vars)
   if (!currentTheme) {
     // eslint-disable-next-line no-undef
     if (process.env.NODE_ENV !== 'production') {
