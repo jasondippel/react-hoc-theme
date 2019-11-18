@@ -1,6 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useTheme, useContrastingText } from '../src'
+import {
+  useTheme,
+  useContrastingText,
+  setActiveTheme,
+  DARK_THEME,
+  LIGHT_THEME,
+} from '../src'
 
 import { Section } from './Section'
 import { SubSection } from './SubSection'
@@ -62,6 +68,22 @@ const Group = styled.div`
   justify-content: flex-start;
 `
 
+const Button = useTheme(styled.button`
+  padding: 12px;
+  background: ${p => p.$theme`primary`};
+  color: ${p => p.$theme`text`};
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  border: none;
+  margin: 8px;
+  border-radius: 3px;
+
+  &:hover {
+    cursor: pointer;
+    background: ${p => p.$theme`primaryAccent`};
+  }
+`)
+
 export const App = useTheme(({ $theme }) => {
   const textMaping = {
     [$theme`text`]: 'text',
@@ -84,6 +106,8 @@ export const App = useTheme(({ $theme }) => {
         </Link>
       </Title>
       <Content>
+        <Button onClick={() => setActiveTheme(LIGHT_THEME)}>Light Theme</Button>
+        <Button onClick={() => setActiveTheme(DARK_THEME)}>Dark Theme</Button>
         <Section title={'Color Swatches'} startOpen>
           {Object.keys(COLOR_SECTIONS).map(s => (
             <React.Fragment key={`${s}_fragment`}>

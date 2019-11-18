@@ -73,11 +73,13 @@ export class Section extends React.Component {
 
     return (
       <Root>
-        <Title onClick={this.toggleOpen}>
-          <Text>{title}</Text>
-          <IndicatorIcon isOpen={isOpen} />
-        </Title>
-        <Content isOpen={isOpen}>{children}</Content>
+        {!!title && (
+          <Title onClick={this.toggleOpen}>
+            <Text>{title}</Text>
+            <IndicatorIcon isOpen={isOpen} />
+          </Title>
+        )}
+        <Content isOpen={!title || isOpen}>{children}</Content>
       </Root>
     )
   }

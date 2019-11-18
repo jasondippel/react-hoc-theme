@@ -6,7 +6,7 @@ export const VALUES = {
    ** TEXT **
    **********/
   text: '#F5FAFC',
-  textInverse: '#2F3638',
+  textInverse: '#181A1B',
   textMeta: '#aeb4b5',
   textDisabled: '#999fa3',
   link: '#00aceb',
@@ -20,7 +20,7 @@ export const VALUES = {
   background400: '#384042',
   background500: '#3f4547',
   backgroundLight: '#FFFFFF',
-  backgroundDark: '#1c2021',
+  backgroundDark: '#181A1B',
   keyline: '#191d1f',
 
   /***********************
