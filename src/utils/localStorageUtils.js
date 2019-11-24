@@ -1,14 +1,14 @@
-import { getRootWindow } from './index'
+import { getRootWindow } from './windowUtils'
 import { LS_KEY } from '../config'
 
-const scopedKey = rawKey => `${LS_KEY}_${rawKey}`
+export const getScopedKey = rawKey => `${LS_KEY}${rawKey}`
 
 export const getLocalStorageValue = key => {
   const RootWindow = getRootWindow()
-  return RootWindow.localStorage.getItem(scopedKey(key))
+  return RootWindow.localStorage.getItem(getScopedKey(key))
 }
 
 export const setLocalStorageValue = (key, value) => {
   const RootWindow = getRootWindow()
-  return RootWindow.localStorage.setItem(scopedKey(key), value)
+  return RootWindow.localStorage.setItem(getScopedKey(key), value)
 }
