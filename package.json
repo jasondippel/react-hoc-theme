@@ -61,7 +61,6 @@
     "test": "jest",
     "test-all": "yarn lint && yarn test",
     "test-watch": "jest --watch",
-    "jest-init": "jest --init",
     "view-source-map": "source-map-explorer dist/index.js dist/index.js.map --html source.html && open source.html"
   }
 }
