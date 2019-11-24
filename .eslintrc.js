@@ -11,10 +11,15 @@ module.exports = {
       modules: true,
     },
   },
-  extends: ['plugin:jsx-a11y/recommended', 'plugin:import/errors'],
-  plugins: ['react', 'import', 'jsx-a11y'],
+  extends: [
+    'plugin:jsx-a11y/recommended',
+    'plugin:import/errors',
+    'plugin:jest/recommended',
+  ],
+  plugins: ['react', 'import', 'jsx-a11y', 'jest'],
   env: {
     browser: true,
+    jest: true,
   },
   rules: {
     'no-console': [WARN],
@@ -63,6 +68,12 @@ module.exports = {
     'react/jsx-boolean-value': [ERROR, 'never'], // probs without values are true and allowed
     'react/jsx-filename-extension': [ERROR, { extensions: ['.js'] }], // never use .jsx file extension
     'react/jsx-pascal-case': [ERROR], // This_Is NOT_CONSIDERED aValid userDefined_ComponentName
+
+    'jest/no-disabled-tests': [WARN],
+    'jest/no-focused-tests': [ERROR], // helpful for debugging tests as it only runs the one, but should not be allowed on master
+    'jest/no-identical-title': [ERROR], // tests in the same scope should not have the same name
+    'jest/prefer-to-have-length': [WARN], // if testing for the length of something, use the function meant for it
+    'jest/valid-expect': [ERROR],
   },
 
   settings: {
