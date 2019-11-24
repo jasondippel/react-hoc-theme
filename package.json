@@ -58,9 +58,9 @@
     "start-demo": "open example/index.html && parcel watch example/index.js --out-dir example/dist --no-hmr",
     "release": "yarn build && npm login && np",
     "lint": "eslint src/ --ext .js --ext .jsx",
-    "test": "jest",
+    "test": "jest --coverage",
     "test-all": "yarn lint && yarn test",
-    "test-watch": "jest --watch",
+    "test-watch": "jest --watch --coverage",
     "view-source-map": "source-map-explorer dist/index.js dist/index.js.map --html source.html && open source.html"
   }
 }

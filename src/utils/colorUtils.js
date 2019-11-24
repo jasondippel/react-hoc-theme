@@ -1,7 +1,7 @@
 /**
  * Determine if value is valid hex color code
  **/
-const isHexColor = val => {
+export const isHexColor = val => {
   if (!val || val[0] !== '#') return false
   val = val.substr(1)
   return (
@@ -14,17 +14,17 @@ const isHexColor = val => {
 /**
  * Returns properly formatted 6 digit hex color starting with a `#`
  **/
-const formatHexColor = hex => {
+export const expandHexColor = hex => {
   if (!isHexColor(hex)) {
     // eslint-disable-next-line no-undef
     if (process.env.NODE_ENV !== 'production') {
       // eslint-disable-next-line no-console
-      console.error('formatHexColor called with non-hex value')
+      console.error('expandHexColor called with non-hex value', hex)
     }
     return false
   }
 
-  if (hex[0] === '#') hex = hex.substr(1) // remove starting '#'
+  hex = hex.substr(1) // remove starting '#'
   if (hex.length === 3) {
     hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`
   }
@@ -35,7 +35,7 @@ const formatHexColor = hex => {
 /**
  * Get red, green, and blue components from hex color code
  **/
-const hexToRgb = hex => {
+export const hexToRgb = hex => {
   if (!isHexColor(hex)) {
     // eslint-disable-next-line no-undef
     if (process.env.NODE_ENV !== 'production') {
@@ -45,7 +45,7 @@ const hexToRgb = hex => {
     return
   }
 
-  hex = formatHexColor(hex)
+  hex = expandHexColor(hex)
   hex = hex.substr(1) // remove starting '#'; guarenteed to be a `#` due to formatter
 
   let bigint = parseInt(hex, 16)
@@ -70,11 +70,7 @@ export const isDark = hex => {
   }
 
   let [r, g, b] = hexToRgb(hex)
-
-  // equation from http://alienryderflex.com/hsp.html
-  const brightness = Math.sqrt(
-    0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b),
-  )
+  const brightness = 0.21 * r + 0.72 * g + 0.07 * b
 
   return brightness <= 127.5
 }
