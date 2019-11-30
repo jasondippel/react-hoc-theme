@@ -6,7 +6,6 @@ const NOT_SET = undefined
  **/
 export const getIn = (collection, keyPath, notSetValue) => {
   keyPath = keyPath.split('/')
-  // console.log('keypath', keyPath, typeof keyPath)
   let i = 0
   while (i !== keyPath.length) {
     collection = collection[keyPath[i++]] || NOT_SET
@@ -16,13 +15,20 @@ export const getIn = (collection, keyPath, notSetValue) => {
   return collection
 }
 
-export const weaveArrays = (arr1, arr2) => {
-  if (!arr2 || !arr2.length) return arr1[0]
-  let result = arr1[0]
+const isEmpty = arr => arr.length === 0
 
-  for (var i = 1; i < arr1.length; i++) {
-    result = result + arr2[i - 1] + arr1[i]
-  }
+const head = arr => arr[0]
 
-  return result
+const tail = arr => arr.slice(1)
+
+const interleave = (a = [], b = [], r = []) => {
+  if (isEmpty(a) && isEmpty(b)) return r
+  if (isEmpty(a)) return [...r, ...b]
+  if (isEmpty(b)) return [...r, ...a]
+  return interleave(tail(a), tail(b), [...r, head(a), head(b)])
+}
+
+export const weaveArrays = (a, b) => {
+  const result = interleave(a, b)
+  return result.join('')
 }

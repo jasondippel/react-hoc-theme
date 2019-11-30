@@ -10,4 +10,4 @@ export {
   getThemeVal,
 } from './themeUtils'
 export { initRootWindow, getRootWindow } from './windowUtils'
-export { getIn, weaveArrays } from './object'
+export { getIn, weaveArrays } from './objectUtils'
