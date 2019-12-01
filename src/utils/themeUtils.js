@@ -1,11 +1,7 @@
-import {
-  getRootWindow,
-  getPubSub,
-  getIn,
-  setLocalStorageValue,
-  getLocalStorageValue,
-  weaveArrays,
-} from './index'
+import { setLocalStorageValue, getLocalStorageValue } from './localStorageUtils'
+import { getIn, weaveArrays } from './objectUtils'
+import { getPubSub } from './pubsubUtils'
+import { getRootWindow } from './windowUtils'
 import {
   DEPRECATED_FIELDS,
   THEME_UPDATE_EVENT,
@@ -26,7 +22,7 @@ const KNOWN_THEMES = {
  * Given a theme object, returns a boolean as to whether or not it matches the
  * expected format
  **/
-const validateTheme = theme => {
+export const validateTheme = theme => {
   if (
     typeof theme === 'object' &&
     typeof theme.type === 'string' &&
@@ -43,26 +39,27 @@ const validateTheme = theme => {
  * Returns the object associated with the currently used theme or undefined if
  * there is no active theme
  **/
-const getActiveTheme = () => {
+export const getActiveTheme = () => {
   const RootWindow = getRootWindow()
-  return RootWindow.$theme.activeTheme
+  const $theme = RootWindow.$theme || {}
+  return $theme.activeTheme
 }
 
 /**
  * Returns the theme object for the default theme
  **/
-const getDefaultTheme = () => KNOWN_THEMES[DEFAULT_THEME.type]
+export const getDefaultTheme = () => KNOWN_THEMES[DEFAULT_THEME.type]
 
 /**
  * Returns the theme object for the given type; For unknown types, it returns
  * undefined
  **/
-const getKnownThemeByType = type => {
+export const getKnownThemeByType = type => {
   // eslint-disable-next-line no-undef
   if (process.env.NODE_ENV !== 'production') {
     if (!KNOWN_THEMES[type]) {
       // eslint-disable-next-line no-console
-      console.error('Tried to get theme for unknown type')
+      console.error('getKnownThemeByType called with unknown type', type)
     }
   }
 
@@ -74,7 +71,7 @@ const getKnownThemeByType = type => {
  * undefined if there's no active theme or the key is not defined in the
  * active theme
  **/
-const getThemeVal = (keyPath, ...vars) => {
+export const getThemeVal = (keyPath, ...vars) => {
   const currentTheme = getActiveTheme()
 
   if (Array.isArray(keyPath)) keyPath = weaveArrays(keyPath, vars)
@@ -82,9 +79,7 @@ const getThemeVal = (keyPath, ...vars) => {
     // eslint-disable-next-line no-undef
     if (process.env.NODE_ENV !== 'production') {
       // eslint-disable-next-line no-console
-      console.error(
-        'Tried to get theme value when no theme has been initialized',
-      )
+      console.error('getThemeVal called, but no theme has been initialized')
     }
     return
   }
@@ -108,7 +103,7 @@ const getThemeVal = (keyPath, ...vars) => {
  * Given a valid theme object, it sets that as the active theme and notifies all
  * subscribers
  **/
-const setActiveTheme = themeObj => {
+export const setActiveTheme = themeObj => {
   const activeTheme = getActiveTheme() || {}
   const isValidTheme = validateTheme(themeObj)
 
@@ -116,7 +111,7 @@ const setActiveTheme = themeObj => {
     // eslint-disable-next-line no-undef
     if (process.env.NODE_ENV !== 'production') {
       // eslint-disable-next-line no-console
-      console.error('Tried to set theme to invalid theme', themeObj)
+      console.error('setActiveTheme called with invalid theme', themeObj)
     }
     return
   }
@@ -140,7 +135,7 @@ const setActiveTheme = themeObj => {
  * If there is no active theme defined, it will be set to the default theme of
  * this package.
  **/
-const initTheme = () => {
+export const initTheme = () => {
   const activeTheme = getActiveTheme()
   if (!activeTheme) {
     const lsThemeType = getLocalStorageValue(THEME_TYPE_KEY)
@@ -155,13 +150,4 @@ const initTheme = () => {
   }
 
   return setActiveTheme(knownMatchingTheme)
-}
-
-export {
-  initTheme,
-  setActiveTheme,
-  getActiveTheme,
-  getDefaultTheme,
-  getKnownThemeByType,
-  getThemeVal,
 }
