@@ -139,8 +139,8 @@ export const initTheme = () => {
   const activeTheme = getActiveTheme()
   if (!activeTheme) {
     const lsThemeType = getLocalStorageValue(THEME_TYPE_KEY)
-    const theme = getKnownThemeByType(lsThemeType) || getDefaultTheme()
-    return setActiveTheme(theme)
+    const prevTheme = !!lsThemeType && getKnownThemeByType(lsThemeType)
+    return setActiveTheme(prevTheme || getDefaultTheme())
   }
 
   const knownMatchingTheme = getKnownThemeByType(activeTheme.type)
