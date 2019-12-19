@@ -1,4 +1,4 @@
-import { getIn, weaveArrays } from './objectUtils'
+import { getIn, weaveArrays } from '../../src/utils/objectUtils'
 
 const SAMPLE_OBJECT = {
   key1: 'value1',

@@ -1,5 +1,5 @@
-import * as windowUtils from './windowUtils'
-import { initPubSub, getPubSub } from './pubsubUtils'
+import * as windowUtils from '../../src/utils/windowUtils'
+import { initPubSub, getPubSub } from '../../src/utils/pubsubUtils'
 
 afterEach(() => {
   delete window.$theme
