@@ -1,4 +1,4 @@
-import { getRootWindow } from './index'
+import { getRootWindow } from './windowUtils'
 
 /**
  * Ensures the PubSub object is defined
@@ -14,5 +14,6 @@ export const initPubSub = PubSub => {
  **/
 export const getPubSub = () => {
   const RootWindow = getRootWindow()
-  return RootWindow.$theme.PubSub
+  const $theme = RootWindow.$theme || {}
+  return $theme.PubSub
 }

@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lightTheme values remain unchanged 1`] = `
+Object {
+  "colors": Object {
+    "background100": "#FFFFFF",
+    "background200": "#FAFAFA",
+    "background300": "#F1F1F1",
+    "background400": "#E3E7E8",
+    "background500": "#D9DDDE",
+    "backgroundDark": "#181A1B",
+    "backgroundLight": "#FFFFFF",
+    "error": "#FF1A1A",
+    "errorAccent": "#F9BFBF",
+    "errorBackground": "#FBE5E5",
+    "keyline": "#CDD2D4",
+    "link": "#007099",
+    "primary": "#00AEEF",
+    "primaryAccent": "#B3E7FB",
+    "primaryBackground": "#DEF4FD",
+    "success": "#7AAF2C",
+    "successAccent": "#C0DF95",
+    "successBackground": "#EEF7E2",
+    "text": "#181A1B",
+    "textDisabled": "#61696b",
+    "textInverse": "#F5FAFC",
+    "textMeta": "#4e5356",
+    "warning": "#f4b71e",
+    "warningAccent": "#FFE380",
+    "warningBackground": "#FFF1C0",
+  },
+}
+`;
