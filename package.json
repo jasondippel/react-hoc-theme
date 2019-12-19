@@ -12,6 +12,14 @@
   "license": "MIT",
   "jest": {
     "clearMocks": true,
+    "coverageThreshold": {
+      "global": {
+        "branches": 95,
+        "functions": 95,
+        "lines": 98,
+        "statements": 98
+      }
+    },
     "testMatch": [
       "**/?(*.)+(jest).js"
     ],

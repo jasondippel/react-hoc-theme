@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 /**
  * Determine if value is valid hex color code
  **/
