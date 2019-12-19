@@ -1,6 +1,6 @@
-import * as localStorageUtils from './localStorageUtils'
-import * as windowUtils from './windowUtils'
-import * as config from '../config'
+import * as localStorageUtils from '../../src/utils/localStorageUtils'
+import * as windowUtils from '../../src/utils/windowUtils'
+import * as config from '../../src/config'
 import {
   validateTheme,
   getActiveTheme,
@@ -9,7 +9,7 @@ import {
   getThemeVal,
   setActiveTheme,
   initTheme,
-} from './themeUtils'
+} from '../../src/utils/themeUtils'
 
 // eslint-disable-next-line no-console
 const originalConsoleError = console.error

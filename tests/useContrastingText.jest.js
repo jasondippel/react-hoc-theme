@@ -1,5 +1,5 @@
-import { useContrastingText } from './useContrastingText'
-import * as themeUtils from './utils/themeUtils'
+import { useContrastingText } from '../src/useContrastingText'
+import * as themeUtils from '../src/utils/themeUtils'
 
 const TEXT = 'colors/text'
 const TEXT_INVERSE = 'colors/textInverse'

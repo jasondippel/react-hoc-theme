@@ -1,9 +1,9 @@
-import * as windowUtils from './windowUtils'
+import * as windowUtils from '../../src/utils/windowUtils'
 import {
   getScopedKey,
   getLocalStorageValue,
   setLocalStorageValue,
-} from './localStorageUtils'
+} from '../../src/utils/localStorageUtils'
 
 const RAW_KEY = 'setLocalStorageValue'
 const SAMPLE_VALUE = 'some value'

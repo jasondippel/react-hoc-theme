@@ -1,4 +1,9 @@
-import { isHexColor, expandHexColor, hexToRgb, isDark } from './colorUtils'
+import {
+  isHexColor,
+  expandHexColor,
+  hexToRgb,
+  isDark,
+} from '../../src/utils/colorUtils'
 
 // eslint-disable-next-line no-console
 const originalConsoleError = console.error

@@ -1,4 +1,4 @@
-import { VERSION, TYPE, VALUES } from './darkTheme'
+import { VERSION, TYPE, VALUES } from '../../src/config/darkTheme'
 
 describe('darkTheme', () => {
   test('version is unchanged', () => expect(VERSION).toEqual(1))

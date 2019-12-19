@@ -7,7 +7,7 @@ import {
   LIGHT_THEME,
   DARK_THEME,
   DEFAULT_THEME,
-} from './index'
+} from '../src/index'
 
 describe('Package exports exist', () => {
   test('useTheme', () => {

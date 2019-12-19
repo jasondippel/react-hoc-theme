@@ -1,4 +1,8 @@
-import { isAtRootWindow, getRootWindow, initRootWindow } from './windowUtils'
+import {
+  isAtRootWindow,
+  getRootWindow,
+  initRootWindow,
+} from '../../src/utils/windowUtils'
 
 const L1 = {} // RootWindow
 const L2 = {}

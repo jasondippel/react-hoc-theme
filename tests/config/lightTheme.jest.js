@@ -1,4 +1,4 @@
-import { VERSION, TYPE, VALUES } from './lightTheme'
+import { VERSION, TYPE, VALUES } from '../../src/config/lightTheme'
 
 describe('lightTheme', () => {
   test('version is unchanged', () => expect(VERSION).toEqual(1))

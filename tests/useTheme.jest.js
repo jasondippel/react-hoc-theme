@@ -1,10 +1,10 @@
 import React from 'react'
 import TestRenderer from 'react-test-renderer'
-import { useTheme } from './useTheme'
-import * as utils from './utils'
-import * as windowUtils from './utils/windowUtils'
-import * as pubsubUtils from './utils/pubsubUtils'
-import * as themeUtils from './utils/themeUtils'
+import { useTheme } from '../src/useTheme'
+import * as utils from '../src/utils'
+import * as windowUtils from '../src/utils/windowUtils'
+import * as pubsubUtils from '../src/utils/pubsubUtils'
+import * as themeUtils from '../src/utils/themeUtils'
 
 function SampleComp(props) {
   return <span {...props}>Sample Component</span>

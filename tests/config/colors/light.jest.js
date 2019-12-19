@@ -1,4 +1,4 @@
-import colors from './dark'
+import colors from '../../../src/config/colors/light'
 import { contrast } from '../../../testUtils'
 
 const MINIMUM_NORMAL_CONTRAST = 4.5
@@ -66,8 +66,8 @@ describe('colors', () => {
       })
     })
 
-    describe('backgroundDark', () => {
-      const res = contrast(colors.text, colors.backgroundDark)
+    describe('backgroundLight', () => {
+      const res = contrast(colors.text, colors.backgroundLight)
 
       test('normal', () => {
         expect(res).toBeGreaterThanOrEqual(MINIMUM_NORMAL_CONTRAST)
@@ -224,8 +224,8 @@ describe('colors', () => {
   })
 
   describe('textInverse on...', () => {
-    describe('backgroundLight', () => {
-      const res = contrast(colors.textInverse, colors.backgroundLight)
+    describe('backgroundDark', () => {
+      const res = contrast(colors.textInverse, colors.backgroundDark)
 
       test('normal', () => {
         expect(res).toBeGreaterThanOrEqual(MINIMUM_NORMAL_CONTRAST)

@@ -1,4 +1,4 @@
-import { DEPRECATED_FIELDS } from './deprecated'
+import { DEPRECATED_FIELDS } from '../../src/config/deprecated'
 
 describe('DEPRECATED_FIELDS', () => {
   test('all deprecated fields have upgrade instructions', () => {
