@@ -72,7 +72,6 @@ Predefined themes available for use.
 
 <!-- Are there any current issues with this component? -->
 
-- No tests
 - NPM package contains more than what's necessary
 
 ## Running the Example

@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Exposed getActiveTheme function
 - Ability to mark fields as deprecated and can provide upgrade instructions
 - Remember theme type that was previously selected/used and try to use the same theme type on reload
+- Tests
 
 ## Removed
 
