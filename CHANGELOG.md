@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+---
+
+## [2.0.0] - 2019-12-30
+
 ### Changed
 
 - \$theme is now a function that takes a string containing the keys to get to the desired value in the object separated by slashes
