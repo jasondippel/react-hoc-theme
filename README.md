@@ -1,5 +1,9 @@
 # react-hoc-theme
 
+[![NPM version](http://img.shields.io/npm/v/react-hoc-theme.svg?style=flat-square)](https://www.npmjs.com/package/react-hoc-theme)
+[![NPM minzipped size](https://img.shields.io/bundlephobia/minzip/react-hoc-theme)](https://www.npmjs.com/package/react-hoc-theme)
+[![Tests](https://github.com/jasondippel/react-hoc-theme/workflows/tests/badge.svg)](https://www.npmjs.com/package/react-hoc-theme)
+
 ## Description
 
 <!-- A description of what this package does. -->
@@ -68,11 +72,9 @@ Predefined themes available for use.
 }
 ```
 
-## Known Issues
+<!-- ## Known Issues -->
 
 <!-- Are there any current issues with this component? -->
-
-- NPM package contains more than what's necessary
 
 ## Running the Example
 

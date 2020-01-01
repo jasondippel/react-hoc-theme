@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.0.1] - 2020-01-01
+
+### Added
+
+- .npmignore
+
 ## [2.0.0] - 2019-12-30
 
 ### Changed
@@ -18,7 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated example to more accurately calculate contrast ratios
 - Changed structure of theme object on window to enable better communication between theme packages (specifically between iframes)
 
-## Added
+### Added
 
 - backgroundLight and backgroundDark values to both light and dark themes
 - Exposed getActiveTheme function
@@ -26,7 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Remember theme type that was previously selected/used and try to use the same theme type on reload
 - Tests
 
-## Removed
+### Removed
 
 - background600
 
