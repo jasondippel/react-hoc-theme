@@ -2,7 +2,7 @@ name: tests
 on: [push]
 jobs:
   build:
-    name: tests
+    name: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -12,6 +12,17 @@ jobs:
       - uses: borales/actions-yarn@v2.0.0
         with:
           cmd: build # will run `yarn build` command
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
       - uses: borales/actions-yarn@v2.0.0
         with:
-          cmd: test-all # will run `yarn test-all` command
+          cmd: lint # will run `yarn lint` command
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: test # will run `yarn test` command
